@@ -12,17 +12,15 @@ Message = gets.chomp.to_s
 puts 'Enter the username you want the webhook to display as: '
 Name = gets.chomp.to_s
 # puts "How many threads do you want to run?\nmore threads does mean faster however you can get rate limited"
+# TODO: Add Mulithreading
 # Threads = gets.chomp.to_i
 
 client = Discordrb::Webhooks::Client.new(url: WEBHOOK_URL)
 
 loop do
-  x = 5
-  while x >= 1
-    client.execute do |builder|
-      builder.username = Name
-      builder.content = Message
-    end
-    x -= 1
+  client.execute do |builder|
+    builder.username = Name
+    builder.content = Message
   end
+  sleep(1)
 end
