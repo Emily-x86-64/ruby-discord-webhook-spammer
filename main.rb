@@ -17,8 +17,12 @@ Name = gets.chomp.to_s
 client = Discordrb::Webhooks::Client.new(url: WEBHOOK_URL)
 
 loop do
-  client.execute do |builder|
-    builder.username = Name
-    builder.content = Message
+  x = 5
+  while x >= 1
+    client.execute do |builder|
+      builder.username = Name
+      builder.content = Message
+    end
+    x -= 1
   end
 end
